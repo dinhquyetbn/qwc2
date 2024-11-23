@@ -40,10 +40,10 @@
     flex: 0 0 auto;
 }
 
-#TopBar.fullscreen {
+/* #TopBar.fullscreen {
     background-color: transparent;
     box-shadow: none;
-}
+} */
 
 #TopBar.fullscreen img.logo,
 #TopBar.fullscreen div.AppMenu .appmenu-label {

@@ -137,7 +137,7 @@ class TopBar extends React.Component {
                 onSwipedDown={() => this.props.toggleFullscreen(false)}
                 onSwipedUp={() => this.props.toggleFullscreen(true)}>
                 <div className={classes} id="TopBar" ref={this.storeHeight}>
-                    {logoEl}
+                    {/* {logoEl} */}
                     <div className="center-span">
                         {this.props.components.Search ? (
                             <this.props.components.Search searchOptions={searchOptions}/>
