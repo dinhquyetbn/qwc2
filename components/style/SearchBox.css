@@ -3,7 +3,7 @@ div.SearchBox {
     position: relative;
     display: flex;
     height: 2em;
-    max-width: 70ch;
+    max-width: 40ch;
     background-color: var(--input-bg-color);
     color: var(--text-color);
 }

@@ -226,3 +226,14 @@ span.react-numeric-input > b {
 span.react-numeric-input > b:hover {
     background-color: var(--button-bg-color-hover)!important;
 }
+
+#v-pills-tab {
+    min-width: 140px;
+}
+.nav-pills .nav-link {
+    color: #0054a6 !important;
+}
+.nav-pills .nav-link.active {
+    background-color: #0054a6 !important;
+    color: #fff !important;
+}

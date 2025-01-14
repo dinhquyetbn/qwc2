@@ -142,14 +142,14 @@ class TopBar extends React.Component {
                         {this.props.components.Search ? (
                             <this.props.components.Search searchOptions={searchOptions}/>
                         ) : null}
-                        {this.props.components.Toolbar ? (
+                        {/* {this.props.components.Toolbar ? (
                             <this.props.components.Toolbar
                                 openExternalUrl={this.openUrl}
                                 toolbarItems={this.props.toolbarItems}
                                 toolbarItemsShortcutPrefix={this.props.toolbarItemsShortcutPrefix} />
-                        ) : null}
+                        ) : null} */}
                     </div>
-                    {this.props.components.AppMenu ? (
+                    {/* {this.props.components.AppMenu ? (
                         <this.props.components.AppMenu
                             appMenuClearsTask={this.props.appMenuClearsTask}
                             appMenuShortcut={this.props.appMenuShortcut}
@@ -158,7 +158,7 @@ class TopBar extends React.Component {
                             openExternalUrl={this.openUrl}
                             showFilterField={this.props.appMenuFilterField}
                             showOnStartup={this.props.appMenuVisibleOnStartup} />
-                    ) : null}
+                    ) : null} */}
                     {this.props.components.FullscreenSwitcher ? (
                         <this.props.components.FullscreenSwitcher />
                     ) : null}

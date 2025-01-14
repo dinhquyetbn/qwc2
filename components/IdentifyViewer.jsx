@@ -5,7 +5,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import isEmpty from 'lodash.isempty';
@@ -26,7 +26,7 @@ import MiscUtils from '../utils/MiscUtils';
 import VectorLayerUtils from '../utils/VectorLayerUtils';
 import Icon from './Icon';
 import './style/IdentifyViewer.css';
-
+import axios from 'axios';
 
 const BuiltinExporters = [
     {
@@ -186,7 +186,8 @@ class IdentifyViewer extends React.Component {
         resultTree: {},
         currentResult: null,
         currentLayer: null,
-        exportFormat: 'geojson'
+        exportFormat: 'geojson',
+        currentDetailResult: null
     };
     constructor(props) {
         super(props);
@@ -224,11 +225,21 @@ class IdentifyViewer extends React.Component {
             currentResult = this.props.identifyResults[layers[0]][0];
             currentLayer = layers[0];
         }
-        this.setState({
-            resultTree: clone(this.props.identifyResults),
-            currentResult: currentResult,
-            currentLayer: currentLayer
-        });
+
+        // Call api get detail tài sản
+        const valMaTaiSan = currentResult?.properties?.maTaiSan;
+        const pathDetailInfo = window.location.origin + '/api/public-building/feature-info/' + valMaTaiSan;
+        axios.get(pathDetailInfo)
+        .then(response => {
+            const data = response.data;
+            this.setState({
+                resultTree: clone(this.props.identifyResults),
+                currentResult: currentResult,
+                currentLayer: currentLayer,
+                currentDetailResult: data
+            });
+        })
+        .catch(error => {});
     };
     setHighlightedResults = (results, resultTree) => {
         if (!results) {
@@ -364,6 +375,7 @@ class IdentifyViewer extends React.Component {
         if (!result) {
             return null;
         }
+
         let resultbox = null;
         let extraattribs = null;
         let featureReportTemplate = null;
@@ -383,8 +395,14 @@ class IdentifyViewer extends React.Component {
             );
         } else if (result.properties.htmlContent) {
             if (result.properties.htmlContentInline) {
+                // console.log('TEST');
+                // console.log(this.state.currentDetailResult);
+                // resultbox = (
+                //     <div className="identify-result-box">{this.parsedContent(result.properties.htmlContent)}</div>
+                // );
+                const resData = this.state.currentDetailResult.result;
                 resultbox = (
-                    <div className="identify-result-box">{this.parsedContent(result.properties.htmlContent)}</div>
+                    <div className="identify-result-box">{this.parsedContent(resData)}</div>
                 );
             } else {
                 resultbox = (

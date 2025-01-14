@@ -14,23 +14,26 @@
     --tooltip-text-color: white;
     --tooltip-border-color: black;
     /* Map buttons */
-    --map-button-bg-color: #595959;
+    /* --map-button-bg-color: #595959; */
+    --map-button-bg-color: #0054A6; /* dev */
     --map-button-text-color: white;
     --map-button-hover-bg-color: #f2f2f2;
-    --map-button-hover-text-color: #595959;
+    /* --map-button-hover-text-color: #595959; */
+    --map-button-hover-text-color: #0054A6; /* dev */
     --map-button-active-bg-color: #f2f2f2;
-    --map-button-active-text-color: #595959;
+    /* --map-button-active-text-color: #595959; */
+    --map-button-active-text-color: #0054A6; /* dev */
     /* Panels (topbar and bottom bar) */
     --panel-bg-color: rgba(255, 255, 255, 0.75);
     --panel-text-color: #595959;
     /* Titlebars */
-    --titlebar-bg-color: #595959;
+    --titlebar-bg-color: #0054A6;
     --titlebar-text-color: white;
     /* Button */
     --button-bg-color: #e9e9e9;
     --button-bg-color-hover: #dcdcdc;
-    --button-bg-color-active: #078aa3;
-    --button-bg-color-active-hover: #06798d;
+    --button-bg-color-active: #0054A6;
+    --button-bg-color-active-hover: #0054A6;
     --button-bg-color-disabled: #e9e9e9;
     --button-text-color: #595959;
     --button-text-color-hover: #595959;
