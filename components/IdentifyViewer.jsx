@@ -228,18 +228,27 @@ class IdentifyViewer extends React.Component {
 
         // Call api get detail tài sản
         const valMaTaiSan = currentResult?.properties?.maTaiSan;
-        const pathDetailInfo = window.location.origin + '/api/public-building/feature-info/' + valMaTaiSan;
-        axios.get(pathDetailInfo)
-        .then(response => {
-            const data = response.data;
+        if (valMaTaiSan) {
+            const pathDetailInfo = window.location.origin + '/api/public-building/feature-info/' + valMaTaiSan;
+            axios.get(pathDetailInfo)
+            .then(response => {
+                const data = response.data;
+                this.setState({
+                    resultTree: clone(this.props.identifyResults),
+                    currentResult: currentResult,
+                    currentLayer: currentLayer,
+                    currentDetailResult: data
+                });
+            })
+            .catch(error => {});
+        } else {
             this.setState({
                 resultTree: clone(this.props.identifyResults),
                 currentResult: currentResult,
                 currentLayer: currentLayer,
-                currentDetailResult: data
             });
-        })
-        .catch(error => {});
+        }
+        
     };
     setHighlightedResults = (results, resultTree) => {
         if (!results) {
@@ -400,10 +409,16 @@ class IdentifyViewer extends React.Component {
                 // resultbox = (
                 //     <div className="identify-result-box">{this.parsedContent(result.properties.htmlContent)}</div>
                 // );
-                const resData = this.state.currentDetailResult.result;
-                resultbox = (
-                    <div className="identify-result-box">{this.parsedContent(resData)}</div>
-                );
+                const resData = this.state.currentDetailResult?.result;
+                if (resData) {
+                    resultbox = (
+                        <div className="identify-result-box">{this.parsedContent(resData)}</div>
+                    );
+                } else {
+                    resultbox = (
+                        <div className="identify-result-box">{this.parsedContent(result.properties.htmlContent)}</div>
+                    );
+                }
             } else {
                 resultbox = (
                     <iframe className="identify-result-box" onLoad={ev => this.setIframeContent(ev.target, result.properties.htmlContent)} ref={el => this.pollIframe(el, result.properties.htmlContent)} />
